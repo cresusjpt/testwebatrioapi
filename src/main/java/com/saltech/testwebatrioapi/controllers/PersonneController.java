@@ -16,7 +16,7 @@ public class PersonneController {
     private PersonneImpl personneImpl;
 
     @PostMapping("/savePersonne")
-    public Personne savePersonne(@RequestBody Personne personne){
+    public Personne savePersonne(@RequestBody Personne personne) throws Exception {
         return personneImpl.savePersonne(personne);
     }
 

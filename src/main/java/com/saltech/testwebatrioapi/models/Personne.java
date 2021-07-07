@@ -1,6 +1,9 @@
 package com.saltech.testwebatrioapi.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "personne")
@@ -46,5 +49,17 @@ public class Personne {
 
     public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public int calculateAge(LocalDate currentDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+
+        //convert String to LocalDate
+        LocalDate birthDate = LocalDate.parse(dateNaissance, formatter);
+        if ((birthDate != null) && (currentDate != null)) {
+            return Period.between(birthDate, currentDate).getYears();
+        } else {
+            return 0;
+        }
     }
 }
