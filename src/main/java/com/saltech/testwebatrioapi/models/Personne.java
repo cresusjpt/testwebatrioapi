@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "personne")
-public class Personne {
+public class Personne implements Comparable<Personne> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,5 +61,10 @@ public class Personne {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public int compareTo(Personne o) {
+        return this.getNom().compareTo(o.getNom());
     }
 }

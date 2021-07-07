@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 @Service
 public class PersonneImpl {
@@ -19,10 +17,15 @@ public class PersonneImpl {
 
     public Iterable<Personne> getPersonnes(){
         Iterable<Personne> lisPersonnes = personneRepo.findAll();
+        List<Personne> personnes = new ArrayList<>();
 
         for (Personne personne: lisPersonnes) {
-
+            personnes.add(personne);
         }
+
+        Collections.sort(personnes);
+
+        lisPersonnes = personnes;
 
         return lisPersonnes;
     }
